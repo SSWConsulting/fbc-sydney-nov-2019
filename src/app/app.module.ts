@@ -8,12 +8,14 @@ import { CompanyListComponent } from './company/company-list/company-list.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { CompanyTableComponent } from './company/company-table/company-table.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyListComponent,
-    CompanyTableComponent
+    CompanyTableComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

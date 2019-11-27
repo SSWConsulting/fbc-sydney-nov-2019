@@ -3,7 +3,7 @@ import { Company } from '../company';
 import { CompanyService } from '../company.service';
 import { componentFactoryName } from '@angular/compiler';
 import { Subscription, Observable } from 'rxjs';
-import {takeWhile} from 'rxjs/operators';
+import {takeWhile, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'fbc-company-list',
@@ -20,7 +20,10 @@ export class CompanyListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.companies$ = this.companyService.getCompanies();
+    this.companies$ = this.companyService.getCompanies()
+    .pipe(
+      tap(c => console.log('got companies', c))
+    );
   }
 
 

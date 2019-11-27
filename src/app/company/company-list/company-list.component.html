@@ -1,16 +1,25 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let company of companies">
-      <td>{{company.name}}</td>
-      <td>{{company.email}}</td>
-      <td>{{company.phone}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <button class="btn btn-success float-right">ADD</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companies">
+        <td>{{company.name}}</td>
+        <td>{{company.email}}</td>
+        <td>{{company.phone}}</td>
+        <td>
+          <button class="btn btn-warning">EDIT</button>
+          <button class="btn btn-danger">DELETE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

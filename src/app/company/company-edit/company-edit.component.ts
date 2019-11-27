@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { CompanyService } from '../company.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Company } from '../company';
 
 @Component({
   selector: 'fbc-company-edit',
@@ -9,14 +12,33 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class CompanyEditComponent implements OnInit {
 
-  constructor() { }
+  isNewCompany: boolean;
+  companyId: number;
+  companyForm: FormGroup;
 
-  inputControl: FormControl = new FormControl();
+  constructor(
+    private companyService: CompanyService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
 
   ngOnInit() {
-    this.inputControl.valueChanges
-    .pipe(debounceTime(2000))
-    .subscribe(v => console.log('value changed to: ', v));
+    this.companyId = this.activatedRoute.snapshot.params.id;
+    this.isNewCompany = !this.companyId;
+
+    this.companyForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('@ssw.com.au'),
+      phone: new FormControl()
+    });
+
+  }
+
+  saveCompany() {
+    const newCompany: Company = this.companyForm.value;
+    this.companyService.addCompany(newCompany)
+    .subscribe(c => this.router.navigateByUrl('/company/list'));
   }
 
 }

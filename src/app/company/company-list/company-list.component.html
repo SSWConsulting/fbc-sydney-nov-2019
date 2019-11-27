@@ -10,13 +10,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let company of (companies$ | async )">
+      <tr *ngFor="let company of (companies$ | async)">
         <td>{{company.name}}</td>
         <td>{{company.email}}</td>
         <td>{{company.phone}}</td>
         <td>
           <button class="btn btn-warning">EDIT</button>
-          <button class="btn btn-danger">DELETE</button>
+          <button class="btn btn-danger" (click)="deleteCompany(company)" >DELETE</button>
         </td>
       </tr>
     </tbody>

@@ -9,13 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { CompanyTableComponent } from './company/company-table/company-table.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyListComponent,
     CompanyTableComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CompanyEditComponent
   ],
   imports: [
     BrowserModule,

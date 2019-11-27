@@ -1,11 +1,10 @@
 <div class="container">
-  <button class="btn btn-success float-right">ADD ➕</button>
+  <button class="btn btn-success float-right" [routerLink]="['/company', 'new']" >ADD ➕</button>
 
   <fbc-company-table
   [companies]="companies$ | async"
   (deleteCompanyClicked)="deleteCompany($event)"
   >
   </fbc-company-table>
-
 </div>
 

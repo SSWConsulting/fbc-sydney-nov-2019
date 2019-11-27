@@ -1,4 +1,13 @@
-<h1>Welcome, Sydney 🐨, to {{title | uppercase}}</h1>
 
 
-<router-outlet></router-outlet>
+<nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand">Welcome, Sydney 🐨, to {{title | uppercase}}</a>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" [routerLinkActive]="'active'">
+        <a class="nav-link" [routerLink]="['/company/list']">Companies</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>

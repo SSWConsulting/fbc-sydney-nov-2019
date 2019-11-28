@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CompanyTableComponent } from './company/company-table/company-table.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 @NgModule({
   declarations: [
@@ -25,7 +28,20 @@ import { CompanyEditComponent } from './company/company-edit/company-edit.compon
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+
+    StoreDevtoolsModule.instrument({
+      maxAge: 30,
+    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

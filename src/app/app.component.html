@@ -4,7 +4,9 @@
     <a class="navbar-brand">Welcome, Sydney 🐨, to {{title | uppercase}} - {{prod}} </a>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" [routerLinkActive]="'active'">
-        <a class="nav-link" [routerLink]="['/company/list']">Companies ({{companyCount$ | async}})</a>
+        <a class="nav-link" [routerLink]="['/company/list']">Companies
+          (<span id="company-count">{{companyCount$ | async}}</span>)
+        </a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
           <a class="nav-link" [routerLink]="['/admin']">Admin</a>

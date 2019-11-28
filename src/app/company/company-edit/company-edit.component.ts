@@ -33,12 +33,22 @@ export class CompanyEditComponent implements OnInit {
       phone: new FormControl()
     });
 
+    if (!this.isNewCompany) {
+      this.companyService.getCompany(this.companyId)
+      .subscribe(company => this.companyForm.patchValue(company));
+    }
   }
 
   saveCompany() {
-    const newCompany: Company = this.companyForm.value;
-    this.companyService.addCompany(newCompany)
-    .subscribe(c => this.router.navigateByUrl('/company/list'));
+    if (this.isNewCompany) {
+      const newCompany: Company = this.companyForm.value;
+      this.companyService.addCompany(newCompany)
+      .subscribe(c => this.router.navigateByUrl('/company/list'));
+    } else {
+      const updatedCompany: Company = {...this.companyForm.value, id: this.companyId };
+      this.companyService.updateCompany(updatedCompany)
+      .subscribe(c => this.router.navigateByUrl('/company/list'));
+    }
   }
 
 }

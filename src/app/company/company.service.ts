@@ -29,20 +29,22 @@ export class CompanyService {
     return this.companies$;
   }
 
-  deleteCompany(company: Company): Observable<Company> {
+  deleteCompany(company: Company) {
     console.log('deleteCompany - Service called');
     return this.httpClient.delete<Company>(`${this.API_BASE}/company/${company.id}`)
     .pipe(
       catchError(this.handleError)
-      );
+      )
+      .subscribe(c => this.loadCompanies());
   }
 
-  addCompany(company: Company): Observable<Company> {
+  addCompany(company: Company){
     return this.httpClient.post<Company>(`${this.API_BASE}/company`, company,
     { headers: new HttpHeaders().set('content-type', 'application/json') })
     .pipe(
       catchError(this.handleError)
-      );
+      )
+      .subscribe(c => this.loadCompanies());
   }
 
   getCompany(companyId: number): Observable<Company> {
@@ -52,12 +54,13 @@ export class CompanyService {
       );
   }
 
-  updateCompany(company: Company): Observable<Company> {
+  updateCompany(company: Company) {
     return this.httpClient.put<Company>(`${this.API_BASE}/company/${company.id}`, company,
     { headers: new HttpHeaders().set('content-type', 'application/json') })
     .pipe(
       catchError(this.handleError)
-    );
+    )
+    .subscribe(c => this.loadCompanies());
   }
 
   handleError(error: Error): Observable<any> {

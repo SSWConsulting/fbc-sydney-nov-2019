@@ -1,11 +1,14 @@
 
 
 <nav class="navbar navbar-light bg-faded">
-    <a class="navbar-brand">Welcome, Sydney 🐨, to {{title | uppercase}}</a>
+    <a class="navbar-brand">Welcome, Sydney 🐨, to {{title | uppercase}} - {{prod}} </a>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" [routerLinkActive]="'active'">
         <a class="nav-link" [routerLink]="['/company/list']">Companies ({{companyCount$ | async}})</a>
       </li>
+      <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+        </li>
     </ul>
   </nav>
   <div class="container">

@@ -10,6 +10,8 @@ const routes: Routes = [
   { path: 'company/list', component: CompanyListComponent },
   { path: 'company/new', component: CompanyEditComponent },
   { path: 'company/edit/:id', component: CompanyEditComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule) },
+  // { path: 'admin', loadChildren: '../app/admin/admin.module#AdminModule' },
   { path: '**', component: NotFoundComponent },
 ];
 

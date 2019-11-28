@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from './company/company.service';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'fbc-root',
@@ -11,6 +12,7 @@ import { map, tap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
 
   title = 'firebootcamp-crm';
+  prod = environment.production ? 'PROD' : 'DEV';
 
   companyCount$: Observable<number>;
 

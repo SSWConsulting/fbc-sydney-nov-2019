@@ -1,5 +1,6 @@
 import { CompanyState, companyReducer } from './company/reducer';
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { CompanyEffects } from './company/effect';
 
 
 export interface AppState {
@@ -13,4 +14,4 @@ export const reducers: ActionReducerMap<AppState> = {
 export const metaReducers: MetaReducer<AppState>[]
  = [];
 
-export const AllEffects = [];
+export const AllEffects = [ CompanyEffects ];

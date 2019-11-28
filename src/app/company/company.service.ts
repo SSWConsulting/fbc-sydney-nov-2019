@@ -33,13 +33,12 @@ export class CompanyService {
     return this.store.select(s => s.company.companies);
   }
 
-  deleteCompany(company: Company) {
-    console.log('deleteCompany - Service called');
+  deleteCompanyHttp(company: Company): Observable<Company> {
     return this.httpClient.delete<Company>(`${this.API_BASE}/company/${company.id}`)
-    .pipe(
-      catchError(this.handleError)
-      )
-      .subscribe(c => this.loadCompanies());
+  }
+
+  deleteCompany(company: Company) {
+    this.store.dispatch(companyActions.deleteCompany({company}));
   }
 
   addCompany(company: Company){

@@ -11,8 +11,9 @@ import { CompanyTableComponent } from './company/company-table/company-table.com
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './state';
+import { reducers, metaReducers, AllEffects } from './state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
         strictActionImmutability: true
       }
     }),
+
+    EffectsModule.forRoot(AllEffects),
 
     StoreDevtoolsModule.instrument({
       maxAge: 30,

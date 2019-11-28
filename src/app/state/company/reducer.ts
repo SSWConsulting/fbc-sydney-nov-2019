@@ -15,6 +15,14 @@ export const initialState: CompanyState = {
 const reducer = createReducer(initialState,
   on(companyActions.setCompanies, (state, action) => {
     return {...state, companies: action.companies };
+  }),
+
+  on(companyActions.deleteCompanySuccess, (state, action) => {
+    const id = action.company.id;
+    const index = state.companies.indexOf(state.companies.find(c => c.id === id));
+    const newList = [...state.companies];
+    newList.splice(index, 1);
+    return {...state, companies: newList };
   })
 );
 

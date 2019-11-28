@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Company } from './company';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 @Injectable({
@@ -11,16 +11,22 @@ export class CompanyService {
 
   constructor(
     private httpClient: HttpClient
-  ) { }
+  ) {
+    this.loadCompanies();
+  }
 
   API_BASE = 'http://firebootcamp-crm-api.azurewebsites.net/api';
 
-  getCompanies(): Observable<Company[]> {
+  private companiesSubject$: BehaviorSubject<Company[]> = new BehaviorSubject<Company[]>([]);
+  companies$: Observable<Company[]> = this.companiesSubject$.asObservable();
+
+  loadCompanies() {
     return this.httpClient.get<Company[]>(`${this.API_BASE}/company`)
-    .pipe(
-      catchError(this.handleError),
-      finalize(() => console.log('COMPLETE'))
-    );
+      .subscribe(list => this.companiesSubject$.next(list));
+  }
+
+  getCompanies(): Observable<Company[]> {
+    return this.companies$;
   }
 
   deleteCompany(company: Company): Observable<Company> {
